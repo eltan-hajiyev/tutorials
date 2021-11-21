@@ -61,15 +61,16 @@ class HttpClientWithNativeJava {
             while ((rl = br.readLine()) != null) {
                 System.out.println(rl);
                 i.incrementAndGet();
-            };
+            }
+            ;
         });
         assertThat(i.get()).isGreaterThan(2);
     }
 
 
     /**
-     *  It will return success response.
-     *  Process time will be more than 12 second.
+     * It will return success response.
+     * Process time will be more than 12 second.
      */
     @Test
     void read_timeout_greater_than_10_second() throws Exception {

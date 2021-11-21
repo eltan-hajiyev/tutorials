@@ -1,3 +1,8 @@
 rootProject.name = 'tutorials'
 
-include 'tools', 'http-timeout', 'aop-transactional', 'two-open-sessions'
+include 'tools'
+include 'http-timeout'
+include 'aop-transactional'
+include 'two-open-sessions'
+include 'jpa-access-strategy'
+

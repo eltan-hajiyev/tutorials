@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * not about multi thread
  * not about spring.jpa.properties.hibernate.enable_lazy_load_no_trans
- *
+ * <p>
  * it's about reference field Student
  */
 

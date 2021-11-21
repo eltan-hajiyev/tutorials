@@ -14,7 +14,8 @@ public class AspectConfig {
     public static final int AOP_IMPACT_SECOND = 3;
 
     @Pointcut("@within(org.springframework.stereotype.Service)")
-    protected void serviceMethods() { }
+    protected void serviceMethods() {
+    }
 
     @AfterReturning("serviceMethods()")
     public void aroundServiceMethods() throws Throwable {
