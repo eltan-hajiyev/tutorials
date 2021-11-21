@@ -11,10 +11,11 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.time.Duration;
 
+import static com.github.elten400.tutorials.aoptransactional.config.AspectConfig.AOP_IMPACT_SECOND;
+
 @SpringBootTest
 @TestPropertySource(properties = {
-		"spring.datasource.hikari.maximum-pool-size=1",
-		"spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true"
+		"spring.datasource.hikari.maximum-pool-size=1"
 })
 class AopTransactionalApplicationTests {
 	@Autowired
@@ -34,7 +35,7 @@ class AopTransactionalApplicationTests {
 		System.out.println(threadExecutorInfo);
 
 		long difference = Math.abs(threadExecutorInfo.getMaxTime() - threadExecutorInfo.getMinTime());
-		Assertions.assertThat(Duration.ofMillis(difference)).isGreaterThan(Duration.ofSeconds(3));
+		Assertions.assertThat(Duration.ofMillis(difference)).isGreaterThan(Duration.ofSeconds(AOP_IMPACT_SECOND));
 	}
 
 	/**
@@ -48,7 +49,7 @@ class AopTransactionalApplicationTests {
 
 		System.out.println(threadExecutorInfo);
 		long difference = Math.abs(threadExecutorInfo.getMaxTime() - threadExecutorInfo.getMinTime());
-		Assertions.assertThat(Duration.ofMillis(difference)).isLessThan(Duration.ofSeconds(3));
+		Assertions.assertThat(Duration.ofMillis(difference)).isLessThan(Duration.ofSeconds(1));
 	}
 
 }
