@@ -31,7 +31,7 @@ class AopTransactionalApplicationTests {
 			return studentPureSelectQueryService.getStudentTransactional(1);
 		});
 
-		System.out.println(threadPoolExecutorForInfo);
+		System.out.println(threadExecutorInfo);
 
 		long difference = Math.abs(threadExecutorInfo.getMaxTime() - threadExecutorInfo.getMinTime());
 		Assertions.assertThat(Duration.ofMillis(difference)).isGreaterThan(Duration.ofSeconds(3));
@@ -46,7 +46,7 @@ class AopTransactionalApplicationTests {
 			return studentPureSelectQueryService.getStudentDefault(1);
 		});
 
-		System.out.println(threadPoolExecutorForInfo);
+		System.out.println(threadExecutorInfo);
 		long difference = Math.abs(threadExecutorInfo.getMaxTime() - threadExecutorInfo.getMinTime());
 		Assertions.assertThat(Duration.ofMillis(difference)).isLessThan(Duration.ofSeconds(3));
 	}
