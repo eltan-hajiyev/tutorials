@@ -1,0 +1,1 @@
+### About two open sessions exception
