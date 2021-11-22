@@ -18,7 +18,7 @@ import static com.github.elten400.tutorials.aoptransactional.config.AspectConfig
         "spring.datasource.hikari.maximum-pool-size=1"
 })
 class AopTransactionalApplicationTests {
-    ThreadPoolExecutorForInfo threadPoolExecutorForInfo = new ThreadPoolExecutorForInfo();
+    ThreadPoolExecutorForInfo threadPoolExecutorForInfo = new ThreadPoolExecutorForInfo(20);
     @Autowired
     private StudentService studentPureSelectQueryService;
 
