@@ -9,12 +9,12 @@ public class CallableInfo<T> implements Callable<T> {
     Callable<T> callable;
 
     public CallableInfo(Callable<T> callable) {
-        beginTime = System.currentTimeMillis();
         this.callable = callable;
     }
 
     @Override
     public T call() throws Exception {
+        beginTime = System.currentTimeMillis();
         T t = callable.call();
         endTime = System.currentTimeMillis();
         return t;

@@ -14,37 +14,37 @@ import java.util.concurrent.CompletableFuture;
 public class ThreadPoolExecutorForInfo {
     private final ThreadPoolTaskExecutor taskExecutor;
 
-    public ThreadPoolExecutorForInfo() {
+    public ThreadPoolExecutorForInfo(Integer maxPoolSize) {
         taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(10);
-        taskExecutor.setMaxPoolSize(2000);
+        taskExecutor.setCorePoolSize(maxPoolSize);
+        taskExecutor.setMaxPoolSize(maxPoolSize);
         taskExecutor.setQueueCapacity(0);
         taskExecutor.setThreadNamePrefix("TaskExecutor-");
         taskExecutor.initialize();
     }
 
-    public ThreadExecutorInfo execute(int threadCount, Callable callable) {
+    public ThreadExecutorInfo execute(int threadCount, Callable<?> callable) {
         return execute(Collections.nCopies(threadCount, callable).toArray(new Callable[]{}));
     }
 
-    public ThreadExecutorInfo execute(Callable... callable) {
-        List<CompletableFuture> futureList = new ArrayList<>();
-        List<CallableInfo> callableInfoList = new ArrayList<>();
+    public ThreadExecutorInfo execute(Callable<?>... callable) {
+        List<CompletableFuture<?>> futureList = new ArrayList<>();
+        List<CallableInfo<?>> callableInfoList = new ArrayList<>();
 
-        for (Callable c : callable) {
-            CallableInfo callableInfo = new CallableInfo(c);
+        for (Callable<?> c : callable) {
+            CallableInfo<?> callableInfo = new CallableInfo<>(c);
             callableInfoList.add(callableInfo);
-            CompletableFuture future = taskExecutor.submitListenable(callableInfo).completable();
+            CompletableFuture<?> future = taskExecutor.submitListenable(callableInfo).completable();
             futureList.add(future);
         }
 
-        futureList.stream().forEach(f -> f.join());
+        futureList.forEach(CompletableFuture::join);
 
-        long totalTime = callableInfoList.stream().mapToLong(t -> t.getTotalSpendTime()).sum();
+        long totalTime = callableInfoList.stream().mapToLong(CallableInfo::getTotalSpendTime).sum();
 
         return ThreadExecutorInfo.builder()
-                .minTime(callableInfoList.stream().mapToLong(t -> t.getTotalSpendTime()).min().getAsLong())
-                .maxTime(callableInfoList.stream().mapToLong(t -> t.getTotalSpendTime()).max().getAsLong())
+                .minTime(callableInfoList.stream().mapToLong(CallableInfo::getTotalSpendTime).min().getAsLong())
+                .maxTime(callableInfoList.stream().mapToLong(CallableInfo::getTotalSpendTime).max().getAsLong())
                 .totalTime(totalTime)
                 .mimeTime(totalTime / callable.length)
                 .build();
