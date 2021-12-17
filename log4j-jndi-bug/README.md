@@ -1,6 +1,12 @@
 ### log4j lookup problem demonstration for spring projects
 
 #### This issue will not affect spring projects with default configurations. Spring uses a logback by default.
+#### By default, even if you try to use Logger for log4j (like below), it will still use the logback.
+    import org.apache.logging.log4j.Logger;
+    import org.apache.logging.log4j.LogManager;
+    
+    Logger log =  LogManager.getLogger(Log4jJndiBugApplication.class);
+
 
 #### To use log4j you must exclude 'spring-boot-starter-logging' and include 'log4j'
     dependencies {
@@ -14,12 +20,6 @@
     configurations {
         all*.exclude module: 'log4j-core'
     }
-
-#### Even if you try to use Logger for log4j (like below), it will still use the logback.
-    import org.apache.logging.log4j.Logger;
-    import org.apache.logging.log4j.LogManager;
-    
-    Logger log =  LogManager.getLogger(Log4jJndiBugApplication.class);
 
 Use next method for investigations.
 
