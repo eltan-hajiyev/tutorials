@@ -5,12 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
-import java.net.ServerSocket;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class Log4jJndiBugApplication {
-    private static ServerSocket ldapSocket;
 
     public static void main(String[] args) {
         SpringApplication.run(Log4jJndiBugApplication.class, args);
