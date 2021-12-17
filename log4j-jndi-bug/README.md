@@ -15,6 +15,12 @@
         all*.exclude module: 'log4j-core'
     }
 
+#### Even if you try to use Logger for log4j (like below), it will still use the logback.
+    import org.apache.logging.log4j.Logger;
+    import org.apache.logging.log4j.LogManager;
+    
+    Logger log =  LogManager.getLogger(Log4jJndiBugApplication.class);
+
 Use next method for investigations.
 
     GET http://localhost:8080/api/infected-method
