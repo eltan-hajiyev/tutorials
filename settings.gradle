@@ -1,5 +1,6 @@
 rootProject.name = 'tutorials'
 
+
 include 'tools'
 include 'http-timeout'
 include 'aop-transactional'
@@ -8,3 +9,4 @@ include 'jpa-access-strategy'
 include 'open-in-view'
 include 'first-level-cache'
 include 'log4j-jndi-bug'
+include 'tomcat-broken-pipe'
