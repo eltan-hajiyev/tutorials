@@ -1,0 +1,21 @@
+
+
+feign.client.config.default.loggerLevel: full
+feign.httpclient.connection-timeout: 2000
+spring.cloud.loadbalancer.retry.enabled: true
+
+logging.level.com.github.elten400: debug
+logging.level.root: off
+logging.level.org.springframework.cloud.openfeign: info
+
+spring:
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            test-feign-service:
+              - uri: http://service1:8080
+              - uri: http://service2:8080
+
+
