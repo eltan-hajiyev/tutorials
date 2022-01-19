@@ -1,0 +1,1 @@
+### load balancing for feign client, by using only property file
