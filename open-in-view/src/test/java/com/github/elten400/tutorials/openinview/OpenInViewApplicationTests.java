@@ -27,7 +27,7 @@ public class OpenInViewApplicationTests {
     private MockMvc mockMvc;
 
     /**
-     * View for rest api - JSON or XML creation procedure
+     * view for MVC - template rendering procedure
      */
     @Test
     public void mvc_open_in_view() throws Exception {
@@ -40,7 +40,7 @@ public class OpenInViewApplicationTests {
     }
 
     /**
-     * view for MVC - template rendering procedure
+     * View for rest api - JSON or XML creation procedure
      */
     @Test
     public void rest_open_in_view() throws Exception {
