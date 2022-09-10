@@ -16,8 +16,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.3'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
