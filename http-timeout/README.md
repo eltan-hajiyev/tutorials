@@ -8,4 +8,4 @@
 ####Result:
 1. For readTimeout less than 5 seconds, it will throw a SocketTimeoutException just after the timeout period.
 2. For readTimeout between 5 and 10, a SocketTimeoutException will be thrown after the first 3 rows are returned.
-3. Only for readTimeout greater than 10 seconds, it will return a success response.
+3. For readTimeout 12 seconds, it will return a success response. But the response time will take much more than 12 seconds.
