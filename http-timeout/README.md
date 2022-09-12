@@ -2,7 +2,8 @@
 
 ####We have:
 1. Array of elements.
-2. We have service which returns first 3 elements with 5 second interval and rest of elements with 10 second interval.
+2. Service which returns first 3 elements with 5 second interval and rest of elements with 10 second interval.
+3. Request to above service with HttpUrlConnection.
 
 ####Result:
 1. For readTimeout less than 5 seconds, it will throw a SocketTimeoutException just after the timeout period.
