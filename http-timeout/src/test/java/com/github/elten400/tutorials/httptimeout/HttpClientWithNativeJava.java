@@ -33,15 +33,26 @@ class HttpClientWithNativeJava {
      * Process time will be around 2 second.
      */
     @Test
-    void readrtimeout_less_than_5_second() throws Exception {
+    void read_timeout_less_than_5_second() throws Exception {
         URLConnection connection = new URL(url).openConnection();
         connection.setReadTimeout((int) TimeUnit.SECONDS.toMillis(2));
 
+        AtomicInteger counter = new AtomicInteger(0);
+
+        /**
+         * Proves that the exception occurs on the first line.
+         */
         assertThrows(SocketTimeoutException.class, () -> {
             InputStream io = connection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(io));
             String rl = br.readLine();
+            counter.incrementAndGet();
         });
+
+        /**
+         * Response was not received. Nothing received.
+         */
+        assertThat(counter.get()).isEqualTo(0);
     }
 
     /**
@@ -55,16 +66,23 @@ class HttpClientWithNativeJava {
         InputStream io = connection.getInputStream();
         BufferedReader br = new BufferedReader(new InputStreamReader(io));
 
-        AtomicInteger i = new AtomicInteger(0);
+        AtomicInteger counter = new AtomicInteger(0);
+
+        /**
+         * Proves that the exception occurs after first line.
+         */
         assertThrows(SocketTimeoutException.class, () -> {
             String rl;
             while ((rl = br.readLine()) != null) {
                 System.out.println(rl);
-                i.incrementAndGet();
+                counter.incrementAndGet();
             }
-            ;
         });
-        assertThat(i.get()).isGreaterThan(2);
+
+        /**
+         * Only part of the response was received.
+         */
+        assertThat(counter.get()).isGreaterThan(2).isLessThan(6);
     }
 
 
@@ -83,5 +101,9 @@ class HttpClientWithNativeJava {
         while ((rl = br.readLine()) != null) {
             System.out.println(rl);
         }
+
+        /**
+         * Response received completely.
+         */
     }
 }
